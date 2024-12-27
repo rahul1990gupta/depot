@@ -6,17 +6,17 @@
 
   <p>
     <strong>Description:</strong>
-    <%= product.description %>
+    <%= strip_tags(product.description) %>
   </p>
 
-  <p>
-    <strong>Image url:</strong>
-    <%= product.image_url %>
+  <p class="px-2 py-3">
+    <strong>Image:</strong>
+    <%= image_tag(product.image_url, class: "w-40") %>
   </p>
 
   <p>
     <strong>Price:</strong>
-    <%= product.price %>
+    <%= number_to_currency(product.price) %>
   </p>
 
 </div>
