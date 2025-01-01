@@ -22,15 +22,22 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :email %>
+  <%= form.label :email %>
     <%= form.text_field :email, class: "input-field" %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :pay_type %>
-    <%= form.select :pay_type, [:check, :credit_card, :purchase_order], 
-    {prompt: "Select a payment method" },  {class: "input-field"} %>
-  </div>
+  <div data-controller="payment">
+    <div class="my-5">
+      <%= form.label :pay_type %>
+      <%= form.select :pay_type, [:check, :credit_card, :purchase_order], 
+      {prompt: "Select a payment method" },  
+      "data-payment-target": "selection",
+      "data-action": "payment#showAdditionalFields",
+      class: "input-field" %>
+    </div>
+    <%= render partial: 'check', locals: {form: form} %>
+    <%= render partial: 'cc', locals: {form: form} %>
+    <%= render partial: 'po', locals: {form: form} %>
 
   <div class="inline">
     <%= form.submit "Place Order", class: 
